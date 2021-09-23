@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
  */
 app.get('/start', (req, res) => {
    const url = req.query.url || 'https://google.com';
-   const browser = req.query.browser.toLowerCase() || 'chrome';
+   const browser = req.query.browser ? req.query.browser.toLowerCase() : 'chrome';
 
    if(!['chrome', 'firefox'].includes(browser)) {
      res.send('Supported browsers are Chrome and Firefox')
@@ -50,7 +50,21 @@ app.get('/start', (req, res) => {
  * Stop a browser
  */
 app.get('/stop', (req, res) => {
-    res.send('Run stop browser')
+   const browser = req.query.browser ? req.query.browser.toLowerCase() : 'firefox';
+
+    if (!['chrome', 'firefox'].includes(browser)) {
+        res.send('Supported browsers are Chrome and Firefox')
+        return;
+    }
+
+   exec(`taskkill /f /im ${browser}.exe`, (err, stdout, stdin) => {
+       if(err) {
+           console.log('Got error in stopping browser', err)
+           return;
+       }
+
+       res.redirect('/')
+   })
 })
 
 /**
