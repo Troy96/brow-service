@@ -1,0 +1,27 @@
+{
+  "name": "brow-service",
+  "version": "1.0.0",
+  "description": "Automate browser operations using REST APIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Troy96/brow-service.git"
+  },
+  "keywords": [
+    "browser",
+    "apis",
+    "automation",
+    "testing",
+    "chrome",
+    "firefox"
+  ],
+  "author": "Tuhin Roy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Troy96/brow-service/issues"
+  },
+  "homepage": "https://github.com/Troy96/brow-service#readme"
+}
