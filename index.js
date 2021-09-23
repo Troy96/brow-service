@@ -8,6 +8,7 @@
  */
 
 const express = require('express');
+const { exec } = require('child_process');
 const app = express();
 const port = 3000;
 
@@ -24,10 +25,25 @@ app.get('/', (req, res) => {
 })
 
 /**
- * Start a browser
+ * Start a browser tab with an url provided
  */
 app.get('/start', (req, res) => {
-    res.send('Run start browser')
+   const url = req.query.url || 'https://google.com';
+   const browser = req.query.browser.toLowerCase() || 'chrome';
+
+   if(!['chrome', 'firefox'].includes(browser)) {
+     res.send('Supported browsers are Chrome and Firefox')
+     return;
+   }
+
+   exec(`start ${browser} ${url}`, (err, stdout, stdin) => {
+       if(err) {
+           console.log('Got error in starting url', err)
+           return
+       }
+
+       res.redirect('/')
+   })
 })
 
 /**
