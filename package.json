@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/Troy96/brow-service/issues"
   },
-  "homepage": "https://github.com/Troy96/brow-service#readme"
+  "homepage": "https://github.com/Troy96/brow-service#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
